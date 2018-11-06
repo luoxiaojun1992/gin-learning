@@ -36,8 +36,11 @@ func setupRouter() *gin.Engine {
 			Address string `form:"address" binding:"required"`
 		}
 
-		if c.BindQuery(&Person) == nil {
+		err := c.BindQuery(&Person)
+		if err == nil {
 			c.JSON(http.StatusOK, Person)
+		} else {
+			c.String(http.StatusBadRequest, err.Error())
 		}
 	})
 
