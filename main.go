@@ -29,6 +29,18 @@ func setupRouter() *gin.Engine {
 		}
 	})
 
+	adminRouter := r.Group("/administrator/")
+	adminRouter.GET("test", func(c *gin.Context) {
+		var Person struct {
+			Name    string `form:"name" binding:"required"`
+			Address string `form:"address" binding:"required"`
+		}
+
+		if c.BindQuery(&Person) == nil {
+			c.JSON(http.StatusOK, Person)
+		}
+	})
+
 	// Authorized group (uses gin.BasicAuth() middleware)
 	// Same than:
 	// authorized := r.Group("/")
