@@ -2,8 +2,9 @@ package main
 
 import (
 	"net/http"
-
 	"github.com/gin-gonic/gin"
+	"net"
+	"log"
 )
 
 var db = make(map[string]string)
@@ -78,6 +79,20 @@ func setupRouter() *gin.Engine {
 
 func main() {
 	r := setupRouter()
+
 	// Listen and Server in 0.0.0.0:8080
-	r.Run(":9999")
+	ln, err := net.Listen("tcp", ":0")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	_, port, err := net.SplitHostPort(ln.Addr().String())
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Println("Listening:" + port)
+
+	http.Serve(ln, r)
+	// r.Run(":9999")
 }
