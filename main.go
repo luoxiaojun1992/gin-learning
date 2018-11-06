@@ -11,6 +11,8 @@ var db = make(map[string]string)
 func setupRouter() *gin.Engine {
 	// Disable Console Color
 	// gin.DisableConsoleColor()
+	// Without Middleware
+	// r := gin.New()
 	r := gin.Default()
 
 	// Ping test
