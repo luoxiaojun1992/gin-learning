@@ -19,7 +19,7 @@ func setupRouter() *gin.Engine {
 
 	// Ping test
 	r.GET("/ping", func(c *gin.Context) {
-		userService := DI.Make("UserService")
+		userService := DI.Resolve("UserService")
 		c.String(http.StatusOK, userService.(struct{name string}).name)
 	})
 
