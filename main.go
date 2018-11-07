@@ -5,6 +5,7 @@ import (
 	"log"
 	"net"
 	"net/http"
+	"github.com/luoxiaojun1992/gin-learning/DI"
 )
 
 var db = make(map[string]string)
@@ -18,7 +19,8 @@ func setupRouter() *gin.Engine {
 
 	// Ping test
 	r.GET("/ping", func(c *gin.Context) {
-		c.String(http.StatusOK, "pong")
+		userService := DI.Make("UserService")
+		c.String(http.StatusOK, userService.(struct{name string}).name)
 	})
 
 	// Get user value
@@ -93,7 +95,15 @@ func run(r *gin.Engine) {
 	http.Serve(ln, r)
 }
 
+func register() {
+	DI.Singleton("UserService", struct {
+		name string
+	}{name: "foo"})
+}
+
 func main() {
+	register()
+
 	r := setupRouter()
 
 	// Listen and Server in 0.0.0.0:8080
