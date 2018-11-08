@@ -25,3 +25,10 @@ func Singleton(name string, resource interface{}) {
 func Instance(name string, factory func() interface{}) {
 	container[name] = factory
 }
+
+// Injecting resource alias
+func Alias(alias string, originName string) {
+	if resource, ok := container[originName]; ok {
+		container[alias] = resource
+	}
+}
