@@ -1,5 +1,6 @@
 package DI
 
+// Dependency Container
 var container map[string]interface{}
 
 // Init container
@@ -9,7 +10,8 @@ func init() {
 
 // Resolving dependency by resource name
 func Resolve(name string) interface{} {
-	if resource, ok := container[name]; ok {
+	resource := fetchResource(name)
+	if resource != nil {
 		return resource.(func() interface{})()
 	}
 
@@ -28,7 +30,17 @@ func Instance(name string, factory func() interface{}) {
 
 // Injecting resource alias
 func Alias(alias string, originName string) {
-	if resource, ok := container[originName]; ok {
+	resource := fetchResource(originName)
+	if resource != nil {
 		container[alias] = resource
 	}
+}
+
+// Fetching resource by name
+func fetchResource(name string) interface{} {
+	if resource, ok := container[name]; ok {
+		return resource
+	}
+
+	return nil
 }
