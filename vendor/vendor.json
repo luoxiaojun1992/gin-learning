@@ -53,6 +53,12 @@
 			"revisionTime": "2018-10-24T15:28:41Z"
 		},
 		{
+			"checksumSHA1": "37a0HZr6cgUsWtXI0+qhKOD7qJg=",
+			"path": "github.com/luoxiaojun1992/DI",
+			"revision": "d9c46b73fe50228560d7a91f647ebbfb25354c3a",
+			"revisionTime": "2018-11-09T02:42:00Z"
+		},
+		{
 			"checksumSHA1": "GiVgQkx5acnq+JZtYiuHPlhHoso=",
 			"path": "github.com/mattn/go-isatty",
 			"revision": "3fb116b820352b7f0c281308a4d6250c22d94e27",
@@ -93,5 +99,5 @@
 			"revisionTime": "2018-03-28T19:50:20Z"
 		}
 	],
-	"rootPath": "github.com/luoxiaojun1992/gin_demo"
+	"rootPath": "github.com/luoxiaojun1992/gin-learning"
 }

@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 	"net/http"
-	"github.com/luoxiaojun1992/gin-learning/DI"
+	"github.com/luoxiaojun1992/DI"
 )
 
 var db = make(map[string]string)
